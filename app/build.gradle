@@ -1,0 +1,19 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "pl.droidsonroids.resolvetest"
+        minSdkVersion 26
+        targetSdkVersion 26
+    }
+}
+
+dependencies {
+    implementation project(path: ':lib')
+}
+
+project.afterEvaluate {
+    def debugCompileClasspath = configurations.getByName("debugCompileClasspath")
+    println "Can be resolved? ${debugCompileClasspath.canBeResolved}"
+    println debugCompileClasspath.resolve()
+}
